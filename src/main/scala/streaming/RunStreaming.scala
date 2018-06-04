@@ -21,6 +21,12 @@ class RunStreaming extends RunJob {
       .set("es.port","9200")
 
 
+    System.setProperty("twitter4j.oauth.consumerKey", "Qik97WOKFcprdDsn8gIxIRNBq")
+    System.setProperty("twitter4j.oauth.consumerSecret", "5uySxUisYq5TpI5gF1yyT0LFhFvC3K7kgl0TH0iQLlS2br7c3e")
+    System.setProperty("twitter4j.oauth.accessToken", "2563228074-BFFvpLCadTVTncSu5Gf4xFAJLuUnKMYm26gjBNn")
+    System.setProperty("twitter4j.oauth.accessTokenSecret", "vQG4NJdDpAH6C4332NMw4bJ5j0G230GD2zzFVqfyJYI7u")
+
+
     // Streaming Context for Twitter4J
     val ssc = new StreamingContext(conf, Seconds(13))
 
@@ -29,6 +35,25 @@ class RunStreaming extends RunJob {
     val worldCupHasthtag=Array("fifaworldcup", "WorldCup ")
     val tweets = TwitterUtils.createStream(ssc, None, worldCupHasthtag)
 
+    tweets.foreachRDD { (rdd, time) =>
+      rdd.map(t => {
+        Map(
+          "user" -> t.getUser.getScreenName,
+          "created_at" -> t.getCreatedAt.getTime.toString,
+          "location" -> Option(t.getGeoLocation).map(geo => {
+            s"${geo.getLatitude},${geo.getLongitude}"
+          }),
+          "text" -> t.getText,
+          "hashtags" -> t.getHashtagEntities.map(_.getText),
+          "retweet" -> t.getRetweetCount,
+          "language" -> t.getLang.toString(),
+          "sentiment" -> "todo"         )
+      }).saveToEs("test/tweet")
+    }
+
+
+    ssc.start()
+    ssc.awaitTermination()
 
   }
 }
