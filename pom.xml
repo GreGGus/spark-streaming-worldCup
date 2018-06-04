@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>spark-streaming-worldCup</groupId>
+    <artifactId>spark-streaming-worldCup</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <properties>
+        <encoding>UTF-8</encoding>
+        <hadoop.version>2.6.0</hadoop.version>
+        <scala.version>2.11.8</scala.version>
+        <scala.compact.version>2.11</scala.compact.version>
+        <spark.version>2.2.0</spark.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-compiler</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-reflect</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-mllib_2.11</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_${scala.compact.version}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_${scala.compact.version}</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.databricks</groupId>
+            <artifactId>spark-csv_${scala.compact.version}</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.typesafe.scala-logging</groupId>
+            <artifactId>scala-logging_2.11</artifactId>
+            <version>3.7.2</version>
+        </dependency>
+
+
+        <!-- Model pré-entrainé ne fonctionne pas.-->
+
+        <!--<dependency>-->
+            <!--<groupId>com.johnsnowlabs.nlp</groupId>-->
+            <!--<artifactId>spark-nlp_2.11</artifactId>-->
+            <!--<version>1.5.1</version>-->
+        <!--</dependency>-->
+
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_${scala.compact.version}</artifactId>
+            <version>2.2.4</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!-- Standford NLP.-->
+        <dependency>
+            <groupId>edu.stanford.nlp</groupId>
+            <artifactId>stanford-corenlp</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>edu.stanford.nlp</groupId>
+            <artifactId>stanford-corenlp</artifactId>
+            <version>3.4.1</version>
+            <classifier>models</classifier>
+        </dependency>
+
+
+
+        <!-- Spark Streaming + ElasticSearch.-->
+
+        <dependency>
+            <groupId>org.apache.bahir</groupId>
+            <artifactId>spark-streaming-twitter_2.11</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch-spark-20_2.11</artifactId>
+            <version>5.6.3</version>
+        </dependency>
+
+
+        <!--<dependency>-->
+
+        <!--<groupId>org.twitter4j</groupId>-->
+            <!--<artifactId>twitter4j-core</artifactId>-->
+            <!--<version>3.0.6</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.twitter4j/twitter4j-stream &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.twitter4j</groupId>-->
+            <!--<artifactId>twitter4j-stream</artifactId>-->
+            <!--<version>3.0.6</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.twitter4j/twitter4j-async &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.twitter4j</groupId>-->
+            <!--<artifactId>twitter4j-async</artifactId>-->
+            <!--<version>3.0.6</version>-->
+        <!--</dependency>-->
+
+
+
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <args>
+                                <argLine>-J-Xms128m</argLine>
+                                <argLine>-J-Xmx512m</argLine>
+                                <argLine>-J--XX:MaxPermSize=300m</argLine>
+                                <argLine>-Djava.net.preferIPv4Stack=true</argLine>
+                                <arg>-dependencyfile</arg>
+                                <arg>${project.build.directory}/.scala_dependencies</arg>
+                            </args>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- UBER JAR-->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <shadedClassifierName>UBER</shadedClassifierName>
+                            <artifactSet>
+                                <includes>
+                                    <include>com.typesafe</include>
+                                    <include>com.googlecode.efficient-java-matrix-library:ejml</include>
+                                    <include>org.elasticsearch:elasticsearch-spark-20_2</include>
+                                    <include>org.apache.bahir:spark-streaming-twitter_2.11</include>
+                                    <include>edu.stanford.nlp</include>
+                                    <include>org.twitter4j</include>
+                                    <include>org.elasticsearch:elasticsearch-spark-20_2.11</include>
+                                </includes>
+                                <excludes>
+                                    <exclude>
+                                        com.twitter:chill_2.11:0.8.0
+                                    </exclude>
+                                </excludes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
