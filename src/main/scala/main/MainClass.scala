@@ -6,9 +6,6 @@ package main
 
 import org.apache.commons.configuration.PropertiesConfiguration
 import org.apache.log4j.{LogManager, Logger}
-import org.apache.spark.SparkContext
-import org.apache.spark.sql.{SQLContext, SparkSession}
-import tool.Setup
 
 
 /**
