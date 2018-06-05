@@ -19,7 +19,7 @@ class SentimentDetector {
     // Get annotation
     val annotation = pipeline.process(message)
 
-
+""
 
   }
 }

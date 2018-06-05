@@ -141,7 +141,6 @@
             <version>5.6.3</version>
         </dependency>
 
-
         <!--<dependency>-->
 
         <!--<groupId>org.twitter4j</groupId>-->
@@ -176,7 +175,7 @@
                     <execution>
                         <goals>
                             <goal>compile</goal>
-                            <!--<goal>testCompile</goal>-->
+                            <goal>testCompile</goal>
                         </goals>
                         <configuration>
                             <args>
