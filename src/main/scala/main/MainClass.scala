@@ -6,9 +6,6 @@ package main
 
 import org.apache.commons.configuration.PropertiesConfiguration
 import org.apache.log4j.{LogManager, Logger}
-import org.apache.spark.SparkContext
-import org.apache.spark.sql.{SQLContext, SparkSession}
-import tool.Setup
 
 
 /**
@@ -16,7 +13,6 @@ import tool.Setup
   *
   * ${SPARK_HOME}/bin/spark-submit \
   * --class main.MainClass \
-  * --conf spark.driver.userClassPathFirst=true  \
   * --master yarn \
   * UBER.jar <package.class>
   */
