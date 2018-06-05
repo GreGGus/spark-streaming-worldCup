@@ -21,10 +21,10 @@ class RunStreaming extends RunJob {
       .set("es.port","9200")
 
 
-    System.setProperty("twitter4j.oauth.consumerKey", "Qik97WOKFcprdDsn8gIxIRNBq")
-    System.setProperty("twitter4j.oauth.consumerSecret", "5uySxUisYq5TpI5gF1yyT0LFhFvC3K7kgl0TH0iQLlS2br7c3e")
-    System.setProperty("twitter4j.oauth.accessToken", "2563228074-BFFvpLCadTVTncSu5Gf4xFAJLuUnKMYm26gjBNn")
-    System.setProperty("twitter4j.oauth.accessTokenSecret", "vQG4NJdDpAH6C4332NMw4bJ5j0G230GD2zzFVqfyJYI7u")
+    System.setProperty("twitter4j.oauth.consumerKey", "")
+    System.setProperty("twitter4j.oauth.consumerSecret", "")
+    System.setProperty("twitter4j.oauth.accessToken", "")
+    System.setProperty("twitter4j.oauth.accessTokenSecret", "")
 
 
     // Streaming Context for Twitter4J
