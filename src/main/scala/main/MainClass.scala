@@ -13,7 +13,6 @@ import org.apache.log4j.{LogManager, Logger}
   *
   * ${SPARK_HOME}/bin/spark-submit \
   * --class main.MainClass \
-  * --conf spark.driver.userClassPathFirst=true  \
   * --master yarn \
   * UBER.jar <package.class>
   */
