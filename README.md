@@ -19,10 +19,10 @@ Standford NLP
 
 ### Installation with Maven UBER JAR
 
-> git clone
-> cd spark-kstreaming-worldCup
-> mvn install
-> mvn package
+`git clone`
+`cd spark-kstreaming-worldCup`
+`mvn install`
+`mvn package`
 
 > BUILD SUCCESS
 
@@ -37,7 +37,7 @@ In progress ..
 
 Our MainClass is main.MainClass which run class received in args.
 
-> spark-submit --class main.MainClass --master local[*] spark-streaming-worldCup-1.0-SNAPSHOT-UBER.jar streaming.RunStreaming
+`spark-submit --class main.MainClass --master local[*] spark-streaming-worldCup-1.0-SNAPSHOT-UBER.jar streaming.RunStreaming`
 
 
 
